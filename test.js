@@ -1,5 +1,5 @@
 const cont=document.getElementById("container");
-const key="AIzaSyDeMDh07Q3MM-WArhhsYpcpZzp1wlJ42Rs";
+const key="AIzaSyBkKtRUSyjS0W3IyNQv4Q9kNG6flLL-Fhk";
 
 const baseurl="https://www.googleapis.com/youtube/v3";
 
@@ -28,8 +28,8 @@ const baseurl="https://www.googleapis.com/youtube/v3";
 // bu using async await
 
 async function loadcomments(){
-    let videoId="";
-    let url=`${url}?key=${key}&videoId=${link}&maxResults=30&part=snippet`
+    let videoId="PSDoFv7BREg";
+    let url=`${baseurl}?key=${key}&videoId=${videoId}&maxResults=30&part=snippet`
     const responce= await fetch(url);
     const result=await responce.json();
 
@@ -49,3 +49,6 @@ async function loadcomments(){
     
 
 }
+
+
+

@@ -1,5 +1,13 @@
 
-
+body{
+    /* background-color: black; */
+}
 .author-profile{
     border-radius: 50%;
+}
+#video-placeholder{
+    width: 90%;
+    height: 700px;
+    display: block;
+    margin: auto;
 }

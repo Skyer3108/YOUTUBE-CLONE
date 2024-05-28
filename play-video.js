@@ -1,41 +1,54 @@
-const key="AIzaSyDeMDh07Q3MM-WArhhsYpcpZzp1wlJ42Rs";
+const key="AIzaSyBkKtRUSyjS0W3IyNQv4Q9kNG6flLL-Fhk";
 
 const baseurl="https://www.googleapis.com/youtube/v3";
   
 
-const comments=document.getElementById("comments")
+const commentsContainer=document.getElementById("comments")
+
+
+
+
 window.addEventListener("load",()=>{
     let videoId=document.cookie.split("=")[1];
 
     if(YT){
         new YT.Player("video-placeholder",
     {
-        height:"300",
+        height:"500",
     
-        width:"500",
-        videoId:videoId,
+        width:"700",
+        videoId,
     });
     loadcomments(videoId)
+    console.log(videoId)
     }
 })
 
+
+
+
 async function loadcomments(videoId){
+    console.log("comments")
+
+
     
-    let url=`${url}?key=${key}&videoId=${link}&maxResults=30&part=snippet`
-    const responce= await fetch(url);
+    let endpoint=`${baseurl}?key=${key}&videoId=${videoId}&maxResults=30&part=snippet`;
+    const responce= await fetch(endpoint);
     const result=await responce.json();
 
     result.items.forEach((item)=>{
         const repliesCount=item.snippet.totalReplyCount;
 
-        const{
+        const {
             authorDisplayName,
             textDisplay,
             likeCount,
             authorProfileImageUrl:profileUrl,
-            PublishedAt
+            PublishedAt,
     
         }=item.snippet.topLevelComment.snippet;
+
+        console.log(authorDisplayName)
      
 
         const div=document.createElement("div");
@@ -43,13 +56,11 @@ async function loadcomments(videoId){
         div.innerHTML=`
 
         <img src="${profileUrl}" width="50" height="50" class="author-profile" alt="author profile"/>
-        <b>${authorDisplayName
-
-        }<b>
+        <b>${authorDisplayName}<b>
 
         <p>${textDisplay}</p>
         `
-        comments.appendChid(div);
+        commentsContainer.appendChid(div);
     })
     
 
